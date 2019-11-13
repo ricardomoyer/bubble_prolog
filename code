@@ -1,0 +1,35 @@
+% Bubble sort in prolog, because bubble sort
+%declaring the function
+bubble_sort([],Sorted) :- 
+	Sorted = [].
+bubble_sort([X], Sorted) :- 
+	Sorted = [X].
+bubble_sort(Terms, Sorted) :-
+	bubble(Terms, Terms), Sorted = Terms ;
+	bubble(Terms, Partials), bubble_sort(Partials, Sorted).
+bubble([], Bubbled) :- Bubbled = [].
+bubble([X], Bubbled) :- Bubbled = [X].
+bubble([X,Y|Terms], [Y|Bubbled]) :-
+    %iterating over the lenght of the list
+    %comparing left item with right item and if left item is bigger they get swapped
+	Y < X, bubble([X|Terms], Bubbled).
+	%if they're the same length or if right item is bigger they dont get swapped
+bubble([X,Y|Terms], [X|Bubbled]) :-
+	X =< Y, bubble([Y|Terms], Bubbled).
+
+/*
+ * pirateado de aca:
+ * https://gist.github.com/KodaDono/8f3bab58f7efb896705b5e1c372a6d5e
+ * 
+ * ejemplo de bubble sort
+ * 
+ * http://i1.faceprep.in/Companies-1/bubble-sort-in-c-implementation.png
+ * 
+ * compilador en el que segurito si corre  xd
+ * 
+ * https://swish.swi-prolog.org/
+ * 
+ * probado con:
+ * 
+ * bubble_sort([2,3,1,4,19,8,5,7,12,6,9,18,10,20,11,13,14,15,16,17],L).
+ */
